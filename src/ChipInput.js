@@ -442,19 +442,6 @@ class ChipInput extends React.Component {
       >
         <div>
           {floatingLabelTextElement}
-          <div style={{ marginTop: floatingLabelText ? 12 : 0 }}>
-            {chips.map((tag, i) => {
-              const value = dataSourceConfig ? tag[dataSourceConfig.value] : tag
-              return chipRenderer({
-                value,
-                text: dataSourceConfig ? tag[dataSourceConfig.text] : tag,
-                isDisabled: disabled,
-                isFocused: this.state.focusedChip === value,
-                handleClick: () => this.setState({ focusedChip: value }),
-                handleRequestDelete: () => this.handleDeleteChip(value)
-              }, i)
-            })}
-          </div>
         </div>
         {hintText ?
           <TextFieldHint
@@ -491,6 +478,19 @@ class ChipInput extends React.Component {
           null
         }
         {errorTextElement}
+        <div style={{ marginTop: floatingLabelText ? 12 : 0 }}>
+          {chips.map((tag, i) => {
+            const value = dataSourceConfig ? tag[dataSourceConfig.value] : tag
+            return chipRenderer({
+              value,
+              text: dataSourceConfig ? tag[dataSourceConfig.text] : tag,
+              isDisabled: disabled,
+              isFocused: this.state.focusedChip === value,
+              handleClick: () => this.setState({ focusedChip: value }),
+              handleRequestDelete: () => this.handleDeleteChip(value)
+            }, i)
+          })}
+        </div>
       </div>
     )
   }
